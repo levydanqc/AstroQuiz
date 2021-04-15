@@ -1,0 +1,29 @@
+{
+  "name": "travail_4_quiz",
+  "version": "1.0.0",
+  "description": "Travail 4 - Quiz.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "node-sass -w style.scss ./css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/levydanqc/travail_4_quiz.git"
+  },
+  "author": "Dan Lévy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/levydanqc/travail_4_quiz/issues"
+  },
+  "homepage": "https://gitlab.com/levydanqc/travail_4_quiz#readme",
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  },
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "node-sass": "^5.0.0"
+  }
+}
