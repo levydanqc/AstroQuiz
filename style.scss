@@ -1,0 +1,41 @@
+$theme-colors: (
+  "primary": #bd32d9,
+  "primaryD": #7812b0,
+  "secondary": #72a9ff,
+  "secondaryD": #5d56fa,
+  "offBlack": #232323,
+);
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(
+    rgba(189, 50, 217, 1) 0%,
+    rgba(114, 169, 255, 1) 100%
+  );
+  background-repeat: no-repeat;
+  height: 100vh;
+  color: map-get($theme-colors, "offBlack");
+}
+
+form {
+  border-radius: 1rem;
+  & .img {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    background: url("../assets/pia16884.jpg") top left/cover no-repeat;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: pixelated;
+  }
+  & label {
+    white-space: nowrap;
+  }
+}
