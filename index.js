@@ -69,14 +69,22 @@ function Validation(e) {
         errorLabel.setAttribute('for', `${label.attributes.for}`);
         errorLabel.classList.add('erreur');
         errorLabel.textContent = error;
-        label.parentElement.insertBefore(errorLabel, label.nextSibling);
+        const icon = document.createElement('img');
+        icon.src = './assets/warning.svg';
+        const errorInfo = document.createElement('div');
+        errorInfo.classList.add('d-flex', 'align-items-center');
+        errorInfo.appendChild(icon);
+        errorInfo.appendChild(errorLabel);
+        label.parentElement.insertBefore(errorInfo, label.nextSibling);
       }
       document.getElementById('liste-erreurs').append(liste);
     } else {
-      inputs.forEach((input) => {
+      for (let i = 0; i < inputs.length; i += 1) {
+        const input = inputs[i];
         const { name } = input;
         utilisateur.name = input.value;
-      });
+      }
+      CreerQuiz();
     }
   } else {
     // Faux si le quiz est à valider
