@@ -12,38 +12,40 @@
 </head>
 
 <body class="d-flex align-items-center justify-content-center">
-    <form class="container bg-light shadow-lg row p-0" name="infos" id="form"
-        action="https://philippefleury.com/backend.php" method="POST">
-        <div class="col-12 col-md-6 p-0 w-100 img">
-            <!-- <img src="./assets/m106.jpg" > -->
-        </div>
-        <div class="col-12 col-md-6 py-5 px-5">
-            <ol class="errors">
-            </ol>
-            <div class="row">
-                <div class="form-group col-md-12 p-0">
-                    <label for="fname">Prénom</label>
-                    <input type="text" name="fname" class="form-control" id="fname" aria-label="Prénom">
+    <form class="container bg-light shadow-lg row p-0" name="formulaire" id="formulaire">
+        <div id="form">
+            <div class="col-lg-6 p-0 w-100 img"></div>
+            <div class="col-lg-6 col-12 py-5 px-5">
+                <div class="row">
+                    <div id="liste-erreurs" class="form-group"></div>
+                    <div class="form-group col-md-12 p-0">
+                        <label for="fname">Prénom</label>
+                        <input type="text" name="prenom" class="form-control" id="fname" aria-label="Prénom">
+                    </div>
+                    <div class="form-group col-12 p-0">
+                        <label for="lname">Nom</label>
+                        <input type="text" name="nom" class="form-control" id="lname" aria-label="Nom">
+                    </div>
+                    <div class="form-group col-md-6 pr-md-3 p-0">
+                        <label for="birth">Date de naissance</label>
+                        <input type="text" name="naissance" class="form-control" id="birth" placeholder="dd/mm/aaaa"
+                            aria-label="Date de naissance" oninput="DateNaissance(this, event)" maxlength="10"
+                            onkeydown="return IsNumber(event)">
+                    </div>
+                    <div class="form-group col-md-6 pl-md-3 p-0">
+                        <label for="status">Status</label>
+                        <select name="status" class="form-control" id="status" aria-label="Status">
+                            <option selected disabled value="">Choisir</option>
+                            <option value="etudiant">Étudiant</option>
+                            <option value="prof">Professeur</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button>
                 </div>
-                <div class="form-group col-md-12 p-0">
-                    <label for="lname">Nom</label>
-                    <input type="text" name="lname" class="form-control" id="lname" aria-label="Nom">
-                </div>
-                <div class="form-group col-md-6 pr-md-3 p-0">
-                    <label for="birth">Date de naissance</label>
-                    <input type="text" name="birth" class="form-control" id="birth" placeholder="dd/mm/aaaa"
-                        aria-label="Date de naissance" oninput="DateNaissance(this, event)" maxlength="10" onkeydown="return IsNumber(event)">
-                </div>
-                <div class="form-group col-md-6 pl-md-3 p-0">
-                    <label for="status">Status</label>
-                    <select name="status" class="form-control" id="status" aria-label="Status">
-                        <option selected disabled value="">Choisir</option>
-                        <option value="etudiant">Étudiant</option>
-                        <option value="prof">Professeur</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button>
             </div>
+        </div>
+        <div id="quiz" class="d-none">
+
         </div>
     </form>
 </body>
