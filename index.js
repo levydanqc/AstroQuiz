@@ -8,13 +8,127 @@
 /* eslint-disable no-console */
 
 document.formulaire.addEventListener('submit', Validation);
-const choix = document.getElementsByName('choix');
-choix.forEach((radio) => {
-  radio.addEventListener('change', SelectionnerChoix);
-});
+// document.formulaire.addEventListener('click', (e) => {
+//   if (e.target && e.target.name === 'choix') {
+//     SelectionnerChoix(e);
+//   }
+// });
 
 const utilisateur = {};
-
+const rawData = `
+[
+  {
+      "titre": "Quel est le nom de l'alignement de trois objets célestes ?",
+      "choix": [
+          "Syzygie",
+          "Suzuki",
+          "Jésus-Christ"
+      ],
+      "explication": "L'alignement entre 3 objets célestes tel que la Terre, la Lune et le Soleil ou tout autre planète est appelé une syzygie.",
+      "reponse": 0,
+      "image": "./assets/syzygie.jpg"
+  },
+  {
+      "titre": "Où est allé David Saint-Jacques, un astronaute québécois, en 2018 ?",
+      "choix": [
+          "Sur la Station Spatiale Internationale",
+          "Dans un trou noir",
+          "Au centre de la Terre"
+      ],
+      "explication": "David Saint-Jacques, un astronaute, astrophysicien, médecin et ingénieur québecois, à été sélectionné en 2009 (à 39 ans) pour une mission vers la Station Spatiale Internationale.",
+      "reponse": 0,
+      "image": "./assets/davidSaintJacques.jpg"
+  },
+  {
+      "titre": "Qu'est ce que la planète neuf ?",
+      "choix": [
+          "Une planète hypotétique du Système Solaire",
+          "Une planète situé dans la ceinture de Kuiper",
+          "La 9ème planète à être apparue"
+      ],
+      "explication": "La planète neuf est une planète hypotétique inventée pour expliquer certaines pertubations de l'orbite d'objets céleste plus situé au delà de Neptune.",
+      "reponse": 0,
+      "image": "./assets/planete9.jpg"
+  },
+  {
+      "titre": "En combien de temps recevons-nous les images de Perseverance, le robot envoyé sur Mars le 30 juillet 2020 ?",
+      "choix": [
+          "Environ 3 minutes",
+          "Presque instantanément",
+          "Plusieurs dizaines de minutes"
+      ],
+      "explication": "Les échanges de données entre la Terre et Mars se fait par les satellites orbitant autour de notre planète. Bien que l'information voyage à la vitesse de la lumière et en raison de la distance avec Mars, il faut 3 minutes et 22 secondes à la communication entre ces 2 planètes.",
+      "reponse": 0,
+      "image": "./assets/perseverance.jpg"
+  },
+  {
+      "titre": "Qu'est-ce que la Voie Lactée ?",
+      "choix": [
+          "Notre galaxie",
+          "La plus proche galaxie",
+          "Une marque de crème glacée"
+      ],
+      "explication": "La Voie Lactée est la galaxie dans lequel se trouve notre système solaire. La galaxie la plus proche est Andromède.",
+      "reponse": 0,
+      "image": "./assets/perseverance.jpg"
+  },
+  {
+      "titre": "Quelles sont les propriétés de Sagittarius B2 (un nuage de gaz) ?",
+      "choix": [
+          "Goûte la framboise et sent la bière",
+          "Extrêment dense et en forme du drapeau américain",
+          "Multicolore et brillant"
+      ],
+      "explication": "Des astronomes cherchant une trace de vie dans notre galaxie ont découvert, en analysant un nuage de gaz au milieu de celle-ci, du Formiate d'éthyle; une substance connu entre autre pour sa participation au goût de la framboise et à l'odeur du rhum.",
+      "reponse": 0,
+      "image": "./assets/sagittariusB2.jpg"
+  },
+  {
+      "titre": "Pour être aussi dense qu'une étoile à neutron, l'humanité entière devrait être compressée dans le volume d'un cube de sucre !",
+      "choix": [
+          "Vrai",
+          "Faux"
+      ],
+      "explication": "Les étoiles à neutron sont des objets célestes formées suite à l'éffondrement d'une étoile massive. La masse est comprise entre 10 fois et 50 fois celle du Soleil et leur taille est comparable à la longueur de Manhattan (enviromn 20km).",
+      "reponse": 0,
+      "image": "./assets/neutronStar.jpg"
+  },
+  {
+      "titre": "À quoi sert cette équation ?",
+      "choix": [
+          "À estimer le nombre potentiel de civilsations dans notre galaxie",
+          "À calculer la population restante si on ne trouve pas de vaccin à la COVID-19",
+          "À déterminer la quantité de Kérosène nécessaire au décollage d'une fusée Space X"
+      ],
+      "explication": "L'équation de Drake, suggérée par l'astronome américain Frank Drake en 1961, tente de calculer le nombre de civilisations extraterrestres dans notre galaxie avec qui nous pourrions entrer en contact. Avec l'estimation actuelle des nombers, il y aurait 10 civilisations en mesure de communiquer avec nous.",
+      "reponse": 0,
+      "image": "./assets/perseverance.jpg"
+  },
+  {
+      "titre": "Peu à peu la Lune se rapproche de nous !",
+      "choix": [
+          "Vrai",
+          "Faux"
+      ],
+      "explication": "Faux. En réalité, la Lune s'éloigne doucement de la terre. À la vitesse de 3.78cm chaque année. Environ la même vitesse à laquelle nos ongles poussent.",
+      "reponse": 1,
+      "image": "./assets/moon.jpg"
+  },
+  {
+      "titre": "Si une forme de vie située dans M58 (une galaxie spirale, situé à 70 millions d'années-lumière de nous) nous regardait en ce moment, que verait-elle ?",
+      "choix": [
+          "Des dinosaures",
+          "Notre confinement",
+          "Des voitures volantes"
+      ],
+      "explication": "En effet, cette galaxie étant située à 70 millions d'années-lumière de la Voie Lactée, il faut donc 70 millions d'années à la lumière pour s'y rendre. Donc, une forme de vie nous observant depuis cet endroit verrait la terre telle qu'elle était il y a 70 millions d'années.",
+      "reponse": 0,
+      "image": "./assets/m58.jpg"
+  }
+]
+`;
+const data = JSON.parse(rawData);
+const questionNumber = 1;
 /**
  * Permet la validation du formulaire.
  */
@@ -46,7 +160,7 @@ function Validation(e) {
 
     // Retire les anciens messages d'erreurs.
     const lastList = document.getElementById('erreurs');
-    const lastLabels = document.getElementsByClassName('erreur');
+    const lastLabels = document.getElementsByClassName('erreurInfo');
     if (lastList) {
       lastList.remove();
     }
@@ -76,7 +190,7 @@ function Validation(e) {
         const icon = document.createElement('img');
         icon.src = './assets/warning.svg';
         const errorInfo = document.createElement('div');
-        errorInfo.classList.add('d-flex', 'align-items-center');
+        errorInfo.classList.add('d-flex', 'align-items-center', 'erreurInfo');
         errorInfo.appendChild(icon);
         errorInfo.appendChild(errorLabel);
         label.parentElement.insertBefore(errorInfo, label.nextSibling);
@@ -89,9 +203,15 @@ function Validation(e) {
         utilisateur.name = input.value;
       }
       CreerQuiz();
+      AfficherQuestion();
     }
   } else {
-    // Faux si le quiz est à valider
+    const answer = GetSelection();
+    if (answer) {
+      console.log(answer);
+    } else {
+      NoInput();
+    }
   }
 
   e.preventDefault();
@@ -100,17 +220,17 @@ function Validation(e) {
 /**
  * Valide la saisie de texte.
  *
- * @param {Object} champs Champs de saisie sur lequel on veut appliquer la validation.
+ * @param {Object} champ Champ de saisie sur lequel on veut appliquer la validation.
  * @return {String} Le message d'erreur correspondant ou dans le cas échant undefined.
  */
 function CheckText(input) {
   if (input.value === '') {
     const label = GetLabel(input);
-    return [`Le champs ${label.textContent} ne peux être vide.`, label];
+    return [`Le champ ${label.textContent} ne peut être vide.`, label];
   }
   if (/[^a-zA-Z]/.test(input.value)) {
     const label = GetLabel(input);
-    return [`Le champs ${label.textContent} ne peux contenir des caractères autres que des lettres.`, label];
+    return [`Le champ ${label.textContent} ne peut contenir des caractères autres que des lettres.`, label];
   }
 }
 
@@ -120,14 +240,14 @@ function CheckText(input) {
  * et le jour doivent être valide et le mois de février doit correspondre
  * aux années bissextiles.
  *
- * @param {Object} input Champs de la date.
+ * @param {Object} input Champ de la date.
  * @return {String} Message d'erreur correspondant.
  */
 function CheckDate(input) {
   const rawDate = input.value;
   if (rawDate === '') {
     const label = GetLabel(input);
-    return [`Le champs ${label.textContent} ne peut être vide.`, label];
+    return [`Le champ ${label.textContent} ne peut être vide.`, label];
   }
   if (!/^(\d\d)[/](\d\d)[/](\d{4})$/.test(rawDate)) {
     const label = GetLabel(input);
@@ -201,16 +321,37 @@ function IsNumber(e) {
  * Mise en forme de la saisie de la date de naissance en ajoutant
  * des barres obliques.
  *
- * @param {Object} input Champs de la date de naissance.
+ * @param {Object} input Champ de la date de naissance.
  * @param {Event} e Évènement lors de la saisie d'un caractère.
  */
 function DateNaissance(input, e) {
-  const champs = document.getElementById(input.id);
-  const { length } = champs.value;
-  const deleting = e.inputType.includes('delete');
-  if ((length === 5 || length === 2) && !deleting) {
-    champs.value += '/';
+  const champ = document.getElementById(input.id);
+  const { length } = champ.value;
+  const deleting = e.inputType;
+  if ((length === 5 || length === 2) && deleting && !deleting.includes('delete')) {
+    champ.value += '/';
   }
+}
+
+/**
+ * Permet de modifier la couleur d'arrière-plan lorsqu'un
+ * choix du quiz est sélectionné.
+ *
+ * @param {*} e Évênement relié au clique du bouton.
+ */
+function SelectionnerChoix(e) {
+  const lastError = document.getElementById('noInputErreur');
+  if (lastError) {
+    lastError.remove();
+  }
+  const { target } = e;
+  const radios = document.getElementsByClassName('radio');
+  for (let i = 0; i < radios.length; i += 1) {
+    radios[i].style.backgroundColor = '';
+    radios[i].style.color = 'black';
+  }
+  target.parentElement.style.backgroundColor = '#5d56fa';
+  target.parentElement.style.color = 'white';
 }
 
 /**
@@ -230,19 +371,61 @@ function CreerQuiz() {
   wrapper.appendChild(submit);
 }
 
-/**
- * Permet de modifier la couleur d'arrière-plan lorsqu'un
- * choix du quiz est sélectionné.
- *
- * @param {*} e Évênement relié au clique du bouton.
- */
-function SelectionnerChoix(e) {
-  const { target } = e;
-  const radios = document.getElementsByClassName('radio');
-  for (let i = 0; i < radios.length; i += 1) {
-    radios[i].style.backgroundColor = '';
-    radios[i].style.color = 'black';
+function AfficherQuestion() {
+  // Récupérer les éléments de la question
+  const title = document.getElementById('question');
+  const img = document.getElementById('questionImg');
+  const wrapper = document.getElementById('choix');
+  const button = document.getElementById('submit');
+  // Définir leur valeur en fonction du numéro de la question
+  const question = data[questionNumber];
+  title.textContent = question.titre;
+  const { choix } = question;
+  for (let i = 0; i < choix.length; i += 1) {
+    // Création des choix de la question
+    const label = document.createElement('label');
+    label.setAttribute('for', i.toString());
+    label.classList.add('radio');
+    label.textContent = choix[i];
+    const input = document.createElement('input');
+    input.setAttribute('type', 'radio');
+    input.setAttribute('name', 'choix');
+    input.setAttribute('value', i.toString());
+    input.id = i.toString();
+    input.addEventListener('change', SelectionnerChoix);
+    label.appendChild(input);
+    wrapper.insertBefore(label, button);
   }
-  target.parentElement.style.backgroundColor = '#5d56fa';
-  target.parentElement.style.color = 'white';
+  img.style.backgroundImage = `url('${question.image}')`;
+}
+
+function GetSelection() {
+  const choix = document.getElementsByName('choix');
+  for (let i = 0; i < choix.length; i += 1) {
+    const input = choix[i];
+    if (input.checked) {
+      return input.value;
+    }
+  }
+  return undefined;
+}
+
+function NoInput() {
+  const lastError = document.getElementById('noInputErreur');
+  if (lastError) {
+    return;
+  }
+  const errorLabel = document.createElement('label');
+  errorLabel.setAttribute('for', 'choix');
+  errorLabel.classList.add('erreur');
+  errorLabel.textContent = 'Vous devez sélectionner une réponse.';
+  const icon = document.createElement('img');
+  icon.src = './assets/warning.svg';
+  const errorInfo = document.createElement('div');
+  errorInfo.id = 'noInputErreur';
+  errorInfo.appendChild(icon);
+  errorInfo.appendChild(errorLabel);
+  const wrapper = document.getElementById('choix');
+  const fChoix = document.getElementsByClassName('radio')[0];
+  wrapper.insertBefore(errorInfo, fChoix);
 }

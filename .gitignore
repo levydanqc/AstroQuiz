@@ -3,3 +3,4 @@ node_modules
 .eslint*
 css/style.css
 .vscode
+style.cs*

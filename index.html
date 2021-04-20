@@ -9,11 +9,13 @@
 
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 
 <body class="d-flex align-items-center justify-content-center">
     <form class="container bg-light shadow-lg p-0" name="formulaire" id="formulaire">
-        <div id="form" class="row d-none">
+        <div id="form" class="row">
             <div class="col-lg-6 p-0 img cover"></div>
             <div class="col-lg-6 col-12 py-5 px-5">
                 <div class="row">
@@ -33,8 +35,8 @@
                             onkeydown="return IsNumber(event)">
                     </div>
                     <div class="form-group col-md-6 pl-md-3 p-0">
-                        <label for="status">Status</label>
-                        <select name="status" class="form-control" id="status" aria-label="Status">
+                        <label for="statut">Statut</label>
+                        <select name="statut" class="form-control" id="statut" aria-label="statut">
                             <option selected disabled value="">Choisir</option>
                             <option value="etudiant">Étudiant</option>
                             <option value="prof">Professeur</option>
@@ -44,24 +46,12 @@
                 </div>
             </div>
         </div>
-        <div id="quiz" class="quiz">
+        <div id="quiz" class="quiz d-none">
             <label id="question" for="choix" class="h2 w-100 p-3">Question</label>
             <div class="p-0 m-0 row">
-                <div class="col-6 p-0">
-                    <img src="./assets/pia16884.jpg" alt="Illustration de la question" id="questionImg">
-                </div>
-                <div class="choix col-6" id="choix">
-                    <p class="text-muted align-self-end" id="questionNumber">1 / 10</p>
-                    <label class="radio" id="one">One
-                        <input type="radio" name="choix" value="0">
-                    </label>
-                    <label class="radio">Two
-                        <input type="radio" name="choix" value="1">
-                    </label>
-                    <label class="radio">Three
-                        <input type="radio" name="choix" value="2">
-                    </label>
-                    <button type="submit" id="submit" class="btn btn-primary mt-4 mb-3">Valider</button>
+                <div class="col-6 p-0" id="questionImg"></div>
+                <div class="choix col-6 my-5 d-flex flex-column justify-content-center align-items-stretch" id="choix">
+                    <p class="text-muted align-self-end" id="questionNumber">1 / 10</p>
                 </div>
             </div>
         </div>
@@ -70,6 +60,4 @@
 
 </html>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <script src="./index.js"></script>

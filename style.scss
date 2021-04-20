@@ -62,9 +62,12 @@ form {
     border-width: 0.4rem;
   }
 
-  & img {
+  & #questionImg {
     border-top-left-radius: 0;
-    @extend .w-100;
+    @extend .img;
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: contain;
   }
 
   // Cacher les boutons par défaut
@@ -75,22 +78,15 @@ form {
     height: 0;
     width: 0;
   }
-  & .choix {
-    @extend .my-5;
-    @extend .d-flex;
-    @extend .flex-column;
-    @extend .justify-content-between;
-  }
   & .radio {
     cursor: pointer;
     border: 1px solid map-get($theme-colors, "secondary");
     font-size: 1.2rem;
-    @extend .w-25;
     @extend .position-relative;
     @extend .d-block;
-    @extend .mx-auto;
     @extend .rounded-lg;
     @extend .p-2;
+    @extend .my-3;
     @extend .text-center;
     &:hover {
       background-color: map-get($theme-colors, "secondary");
