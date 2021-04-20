@@ -8,6 +8,10 @@
 /* eslint-disable no-console */
 
 document.formulaire.addEventListener('submit', Validation);
+const choix = document.getElementsByName('choix');
+choix.forEach((radio) => {
+  radio.addEventListener('change', SelectionnerChoix);
+});
 
 const utilisateur = {};
 
@@ -207,4 +211,38 @@ function DateNaissance(input, e) {
   if ((length === 5 || length === 2) && !deleting) {
     champs.value += '/';
   }
+}
+
+/**
+ * Permet de creer la mise en forme du quiz.
+ *
+ */
+function CreerQuiz() {
+  // Retirer le formulaire.
+  document.formulaire.firstElementChild.classList.add('d-none');
+  // Afficher le template du quiz.
+  document.formulaire.lastElementChild.classList.remove('d-none');
+  // Déplacer le bouton submit.
+  const submit = document.getElementById('submit');
+  submit.innerHTML = 'Suivant';
+  submit.classList.add('mx-5');
+  const wrapper = document.getElementById('choix');
+  wrapper.appendChild(submit);
+}
+
+/**
+ * Permet de modifier la couleur d'arrière-plan lorsqu'un
+ * choix du quiz est sélectionné.
+ *
+ * @param {*} e Évênement relié au clique du bouton.
+ */
+function SelectionnerChoix(e) {
+  const { target } = e;
+  const radios = document.getElementsByClassName('radio');
+  for (let i = 0; i < radios.length; i += 1) {
+    radios[i].style.backgroundColor = '';
+    radios[i].style.color = 'black';
+  }
+  target.parentElement.style.backgroundColor = '#5d56fa';
+  target.parentElement.style.color = 'white';
 }

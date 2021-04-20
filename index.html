@@ -12,9 +12,9 @@
 </head>
 
 <body class="d-flex align-items-center justify-content-center">
-    <form class="container bg-light shadow-lg row p-0" name="formulaire" id="formulaire">
-        <div id="form">
-            <div class="col-lg-6 p-0 w-100 img"></div>
+    <form class="container bg-light shadow-lg p-0" name="formulaire" id="formulaire">
+        <div id="form" class="row d-none">
+            <div class="col-lg-6 p-0 img cover"></div>
             <div class="col-lg-6 col-12 py-5 px-5">
                 <div class="row">
                     <div id="liste-erreurs" class="form-group"></div>
@@ -40,12 +40,30 @@
                             <option value="prof">Professeur</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button>
+                    <button type="submit" id="submit" class="btn btn-primary mt-4 mb-3">Valider</button>
                 </div>
             </div>
         </div>
-        <div id="quiz" class="d-none">
-
+        <div id="quiz" class="quiz">
+            <label id="question" for="choix" class="h2 w-100 p-3">Question</label>
+            <div class="p-0 m-0 row">
+                <div class="col-6 p-0">
+                    <img src="./assets/pia16884.jpg" alt="Illustration de la question" id="questionImg">
+                </div>
+                <div class="choix col-6" id="choix">
+                    <p class="text-muted align-self-end" id="questionNumber">1 / 10</p>
+                    <label class="radio" id="one">One
+                        <input type="radio" name="choix" value="0">
+                    </label>
+                    <label class="radio">Two
+                        <input type="radio" name="choix" value="1">
+                    </label>
+                    <label class="radio">Three
+                        <input type="radio" name="choix" value="2">
+                    </label>
+                    <button type="submit" id="submit" class="btn btn-primary mt-4 mb-3">Valider</button>
+                </div>
+            </div>
         </div>
     </form>
 </body>

@@ -20,22 +20,25 @@ body {
   background-repeat: no-repeat;
   height: 100vh;
   color: map-get($theme-colors, "offBlack");
-  & > * {
-    border-radius: 1rem;
-  }
+}
+
+.img {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: pixelated;
 }
 
 form {
-  & .img {
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
+  max-height: 90vh;
+  border-radius: 1rem;
+  @extend .bg-light;
+  & .cover {
     background: url("../assets/pia16884.jpg") top left/cover no-repeat;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -o-crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    -ms-interpolation-mode: nearest-neighbor;
-    image-rendering: pixelated;
   }
   & label {
     @extend .m-0;
@@ -47,11 +50,50 @@ form {
   }
   & .erreur {
     @extend .text-danger;
-    @extend .d-block;
     @extend .m-0;
+    @extend .ml-2;
   }
 }
 
 .quiz {
-  @extend .bg-light;
+  & .h2 {
+    border-bottom-style: solid;
+    border-bottom-color: map-get($theme-colors, "secondaryD");
+    border-width: 0.4rem;
+  }
+
+  & img {
+    border-top-left-radius: 0;
+    @extend .w-100;
+  }
+
+  // Cacher les boutons par défaut
+  & input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  & .choix {
+    @extend .my-5;
+    @extend .d-flex;
+    @extend .flex-column;
+    @extend .justify-content-between;
+  }
+  & .radio {
+    cursor: pointer;
+    border: 1px solid map-get($theme-colors, "secondary");
+    font-size: 1.2rem;
+    @extend .w-25;
+    @extend .position-relative;
+    @extend .d-block;
+    @extend .mx-auto;
+    @extend .rounded-lg;
+    @extend .p-2;
+    @extend .text-center;
+    &:hover {
+      background-color: map-get($theme-colors, "secondary");
+    }
+  }
 }
