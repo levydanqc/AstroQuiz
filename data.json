@@ -52,7 +52,7 @@
         ],
         "explication": "La Voie Lactée est la galaxie dans lequel se trouve notre système solaire. La galaxie la plus proche est Andromède.",
         "reponse": 1,
-        "image": "./assets/perseverance.jpg"
+        "image": "./assets/milkyWay.jpg"
     },
     {
         "titre": "Quelles sont les propriétés de Sagittarius B2 (un nuage de gaz) ?",
@@ -84,7 +84,7 @@
         ],
         "explication": "L'équation de Drake, suggérée par l'astronome américain Frank Drake en 1961, tente de calculer le nombre de civilisations extraterrestres dans notre galaxie avec qui nous pourrions entrer en contact. Avec l'estimation actuelle des nombers, il y aurait 10 civilisations en mesure de communiquer avec nous.",
         "reponse": 2,
-        "image": "./assets/perseverance.jpg"
+        "image": "./assets/drake.jpg"
     },
     {
         "titre": "Peu à peu la Lune se rapproche de nous !",

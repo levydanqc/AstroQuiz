@@ -70,7 +70,7 @@ const rawData = `
       ],
       "explication": "La Voie Lactée est la galaxie dans lequel se trouve notre système solaire. La galaxie la plus proche est Andromède.",
       "reponse": 1,
-      "image": "./assets/perseverance.jpg"
+      "image": "./assets/milkyWay.jpg"
   },
   {
       "titre": "Quelles sont les propriétés de Sagittarius B2 (un nuage de gaz) ?",
@@ -102,7 +102,7 @@ const rawData = `
       ],
       "explication": "L'équation de Drake, suggérée par l'astronome américain Frank Drake en 1961, tente de calculer le nombre de civilisations extraterrestres dans notre galaxie avec qui nous pourrions entrer en contact. Avec l'estimation actuelle des nombers, il y aurait 10 civilisations en mesure de communiquer avec nous.",
       "reponse": 2,
-      "image": "./assets/perseverance.jpg"
+      "image": "./assets/drake.jpg"
   },
   {
       "titre": "Peu à peu la Lune se rapproche de nous !",
@@ -224,8 +224,10 @@ function Validation(e) {
     AfficheExplication();
   } else if (questionNumber <= 10) { // On passe à la prochaine question
     AfficherQuestion();
-  } else { // Sinon on affiche le résultat
+  } else if (!utilisateur.recommencer) { // On affiche le résultat
     AfficherResultat();
+  } else { // Sinon on recommence le quiz
+    window.location.reload();
   }
 
   e.preventDefault();
@@ -242,7 +244,9 @@ function CheckText(input) {
     const label = GetLabel(input);
     return [`Le champ ${label.textContent} ne peut être vide.`, label];
   }
-  if (/[^a-zA-Z]/.test(input.value)) {
+  const pattern = /^[a-z ,.'-âûèéç]+$/i;
+
+  if (!pattern.test(input.value)) {
     const label = GetLabel(input);
     return [`Le champ ${label.textContent} ne peut contenir des caractères autres que des lettres.`, label];
   }
@@ -542,4 +546,66 @@ function AfficheExplication() {
   wrapper.insertBefore(text, button);
   utilisateur.aExpliquer = false;
   questionNumber += 1;
+}
+
+/**
+ * Affiche les résultats du quiz et les informations
+ * de l'utilisateur.
+ *
+ */
+function AfficherResultat() {
+  // Suppression des explications et autres élements
+  const explication = document.getElementById('textExplication');
+  if (explication) {
+    explication.remove();
+  }
+  const titre = document.getElementById('question');
+  titre.remove();
+  const number = document.getElementById('questionNumber');
+  number.remove();
+
+  const infos = [
+    `Nom : ${utilisateur.nom}`,
+    `Prénom : ${utilisateur.prenom}`,
+    `Âge : ${GetAge(utilisateur.naissance)}`,
+    `Status : ${utilisateur.statut}`,
+    `Score : ${utilisateur.points * 10} %`,
+  ];
+
+  const liste = document.createElement('ul');
+  liste.id = 'infosUtilisateur';
+  for (let i = 0; i < infos.length; i += 1) {
+    const info = document.createElement('li');
+    info.textContent = infos[i];
+    liste.append(info);
+  }
+
+  const img = document.getElementById('questionImg');
+  img.style.backgroundImage = 'url(\'./assets/completed.png\')';
+  const wrapper = document.getElementById('choix');
+  const button = document.getElementById('submit');
+  button.innerHTML = 'Recommencer';
+  button.style.fontSize = '2rem';
+  utilisateur.recommencer = true;
+  wrapper.insertBefore(liste, button);
+}
+
+/**
+ * Permet de calculer l'âge d'une personne
+ * depuis sa date de naissance.
+ *
+ * Basé sur https://stackoverflow.com/a/7091965.
+ * @param {String} date Date de naissance.
+ * @return {Int} Âge de la personne.
+ */
+function GetAge(date) {
+  const [jour, mois, annee] = date.split('/');
+  const today = new Date();
+  const naissance = new Date(annee, mois, jour);
+  let age = today.getFullYear() - naissance.getFullYear();
+  const m = today.getMonth() - naissance.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < naissance.getDate())) {
+    age -= 1;
+  }
+  return age;
 }

@@ -97,4 +97,9 @@ form {
     font-size: 1.3rem;
     line-height: 2;
   }
+  & #infosUtilisateur {
+    font-size: 2rem;
+    line-height: 2;
+    @extend .mx-auto;
+  }
 }
