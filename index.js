@@ -467,7 +467,6 @@ function NoInput() {
     return;
   }
   const errorLabel = document.createElement('label');
-  errorLabel.setAttribute('for', 'choix');
   errorLabel.classList.add('erreur');
   errorLabel.textContent = 'Vous devez sélectionner une réponse.';
   const icon = document.createElement('img');
