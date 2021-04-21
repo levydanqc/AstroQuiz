@@ -92,4 +92,9 @@ form {
       background-color: map-get($theme-colors, "secondary");
     }
   }
+  & #textExplication {
+    color: map-get($theme-colors, "offBlack");
+    font-size: 1.3rem;
+    line-height: 2;
+  }
 }

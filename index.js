@@ -7,69 +7,69 @@
 /* eslint-disable strict */
 /* eslint-disable no-console */
 
+// Renvoie la fonction Validation() lorsque le bouton est submit est utilisé.
 document.formulaire.addEventListener('submit', Validation);
-// document.formulaire.addEventListener('click', (e) => {
-//   if (e.target && e.target.name === 'choix') {
-//     SelectionnerChoix(e);
-//   }
-// });
 
+/** @type {Object} Donnée de l'utilisateur. */
 const utilisateur = {};
+utilisateur.points = 0;
+
+/** @type {JSONString} Données du quiz. */
 const rawData = `
 [
   {
       "titre": "Quel est le nom de l'alignement de trois objets célestes ?",
       "choix": [
-          "Syzygie",
           "Suzuki",
+          "Syzygie",
           "Jésus-Christ"
       ],
       "explication": "L'alignement entre 3 objets célestes tel que la Terre, la Lune et le Soleil ou tout autre planète est appelé une syzygie.",
-      "reponse": 0,
+      "reponse": 1,
       "image": "./assets/syzygie.jpg"
   },
   {
       "titre": "Où est allé David Saint-Jacques, un astronaute québécois, en 2018 ?",
       "choix": [
-          "Sur la Station Spatiale Internationale",
           "Dans un trou noir",
-          "Au centre de la Terre"
+          "Au centre de la Terre",
+          "Sur la Station Spatiale Internationale"
       ],
       "explication": "David Saint-Jacques, un astronaute, astrophysicien, médecin et ingénieur québecois, à été sélectionné en 2009 (à 39 ans) pour une mission vers la Station Spatiale Internationale.",
-      "reponse": 0,
+      "reponse": 2,
       "image": "./assets/davidSaintJacques.jpg"
   },
   {
       "titre": "Qu'est ce que la planète neuf ?",
       "choix": [
-          "Une planète hypotétique du Système Solaire",
           "Une planète situé dans la ceinture de Kuiper",
+          "Une planète hypotétique du Système Solaire",
           "La 9ème planète à être apparue"
       ],
       "explication": "La planète neuf est une planète hypotétique inventée pour expliquer certaines pertubations de l'orbite d'objets céleste plus situé au delà de Neptune.",
-      "reponse": 0,
+      "reponse": 1,
       "image": "./assets/planete9.jpg"
   },
   {
       "titre": "En combien de temps recevons-nous les images de Perseverance, le robot envoyé sur Mars le 30 juillet 2020 ?",
       "choix": [
-          "Environ 3 minutes",
           "Presque instantanément",
-          "Plusieurs dizaines de minutes"
+          "Plusieurs dizaines de minutes",
+          "Environ 3 minutes"
       ],
       "explication": "Les échanges de données entre la Terre et Mars se fait par les satellites orbitant autour de notre planète. Bien que l'information voyage à la vitesse de la lumière et en raison de la distance avec Mars, il faut 3 minutes et 22 secondes à la communication entre ces 2 planètes.",
-      "reponse": 0,
+      "reponse": 2,
       "image": "./assets/perseverance.jpg"
   },
   {
       "titre": "Qu'est-ce que la Voie Lactée ?",
       "choix": [
-          "Notre galaxie",
           "La plus proche galaxie",
+          "Notre galaxie",
           "Une marque de crème glacée"
       ],
       "explication": "La Voie Lactée est la galaxie dans lequel se trouve notre système solaire. La galaxie la plus proche est Andromède.",
-      "reponse": 0,
+      "reponse": 1,
       "image": "./assets/perseverance.jpg"
   },
   {
@@ -96,12 +96,12 @@ const rawData = `
   {
       "titre": "À quoi sert cette équation ?",
       "choix": [
-          "À estimer le nombre potentiel de civilsations dans notre galaxie",
           "À calculer la population restante si on ne trouve pas de vaccin à la COVID-19",
-          "À déterminer la quantité de Kérosène nécessaire au décollage d'une fusée Space X"
+          "À déterminer la quantité de Kérosène nécessaire au décollage d'une fusée Space X",
+          "À estimer le nombre potentiel de civilsations dans notre galaxie"
       ],
       "explication": "L'équation de Drake, suggérée par l'astronome américain Frank Drake en 1961, tente de calculer le nombre de civilisations extraterrestres dans notre galaxie avec qui nous pourrions entrer en contact. Avec l'estimation actuelle des nombers, il y aurait 10 civilisations en mesure de communiquer avec nous.",
-      "reponse": 0,
+      "reponse": 2,
       "image": "./assets/perseverance.jpg"
   },
   {
@@ -127,8 +127,13 @@ const rawData = `
   }
 ]
 `;
+
+/** @type {JSON} Données du quiz */
 const data = JSON.parse(rawData);
-const questionNumber = 1;
+
+/** @type {Int} Numéro actuel de la question du quiz. */
+let questionNumber = 1;
+
 /**
  * Permet la validation du formulaire.
  */
@@ -164,10 +169,8 @@ function Validation(e) {
     if (lastList) {
       lastList.remove();
     }
-    if (lastLabels.length) {
-      while (lastLabels.length) {
-        lastLabels[0].remove();
-      }
+    while (lastLabels.length) {
+      lastLabels[0].remove();
     }
 
     // Vrai, si le vecteur contient des messages d'erreurs.
@@ -199,19 +202,30 @@ function Validation(e) {
     } else {
       for (let i = 0; i < inputs.length; i += 1) {
         const input = inputs[i];
-        const { name } = input;
-        utilisateur.name = input.value;
+        utilisateur[input.name] = input.value;
       }
       CreerQuiz();
       AfficherQuestion();
     }
-  } else {
-    const answer = GetSelection();
-    if (answer) {
-      console.log(answer);
-    } else {
+    // Si la réponse est à valider
+  } else if (utilisateur.aValider) {
+    const answer = GetSelection(); // Récupérer le choix
+    if (answer) { // S'il y a une sélection
+      const estValide = GetReponse(answer); // Valider le choix
+      if (estValide) {
+        BonneReponse(answer);
+      } else {
+        MauvaiseReponse(answer);
+      }
+    } else { // S'il n'y a pas de sélection
       NoInput();
     }
+  } else if (utilisateur.aExpliquer) { // On affiche les détails
+    AfficheExplication();
+  } else if (questionNumber <= 10) { // On passe à la prochaine question
+    AfficherQuestion();
+  } else { // Sinon on affiche le résultat
+    AfficherResultat();
   }
 
   e.preventDefault();
@@ -299,6 +313,12 @@ function CheckDate(input) {
   return undefined;
 }
 
+/**
+ * Obtenir le label correspondant au input donné.
+ *
+ * @param {*} input Le champ de saisi dont on veut le label.
+ * @return {*} Le label correspondant
+ */
 function GetLabel(input) {
   return document.querySelector(`label[for=${input.id}]`);
 }
@@ -365,22 +385,37 @@ function CreerQuiz() {
   document.formulaire.lastElementChild.classList.remove('d-none');
   // Déplacer le bouton submit.
   const submit = document.getElementById('submit');
-  submit.innerHTML = 'Suivant';
   submit.classList.add('mx-5');
   const wrapper = document.getElementById('choix');
   wrapper.appendChild(submit);
 }
 
+/**
+ * Permet d'afficher la prochaine question du quiz,
+ * en se basant sur le numéro de la question actuelle.
+ *
+ */
 function AfficherQuestion() {
   // Récupérer les éléments de la question
   const title = document.getElementById('question');
   const img = document.getElementById('questionImg');
   const wrapper = document.getElementById('choix');
   const button = document.getElementById('submit');
+  const numero = document.getElementById('questionNumber');
+  button.innerHTML = 'Valider';
+
+  // Suppression des explications
+  const explication = document.getElementById('textExplication');
+  if (explication) {
+    explication.remove();
+  }
+
   // Définir leur valeur en fonction du numéro de la question
-  const question = data[questionNumber];
+  const question = data[questionNumber - 1];
   title.textContent = question.titre;
+  numero.textContent = `${questionNumber} / 10`;
   const { choix } = question;
+
   for (let i = 0; i < choix.length; i += 1) {
     // Création des choix de la question
     const label = document.createElement('label');
@@ -397,8 +432,14 @@ function AfficherQuestion() {
     wrapper.insertBefore(label, button);
   }
   img.style.backgroundImage = `url('${question.image}')`;
+  utilisateur.aValider = true;
 }
 
+/**
+ * Obtenir la valeur du choix de l'utilisateur à la question.
+ *
+ * @return {Int} Valeur du choix de l'utilisateur.
+ */
 function GetSelection() {
   const choix = document.getElementsByName('choix');
   for (let i = 0; i < choix.length; i += 1) {
@@ -410,6 +451,12 @@ function GetSelection() {
   return undefined;
 }
 
+/**
+ * Affiche un message d'erreur lorsque l'utilisateur tente de
+ * valider une question où il n'a pas choisi de réponse.
+ *
+ * @return {*} ;
+ */
 function NoInput() {
   const lastError = document.getElementById('noInputErreur');
   if (lastError) {
@@ -428,4 +475,71 @@ function NoInput() {
   const wrapper = document.getElementById('choix');
   const fChoix = document.getElementsByClassName('radio')[0];
   wrapper.insertBefore(errorInfo, fChoix);
+}
+
+/**
+ * Valider le choix de l'utilisateur à la question du quiz.
+ *
+ * @param {Int} answer Valeur de la réponse de l'utilisateur.
+ * @return {Boolean} true si la réponse est bonne, faux autrement.
+ */
+function GetReponse(answer) {
+  if (answer === data[questionNumber - 1].reponse.toString()) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Gère le cas d'une bonne réponse.
+ * Change la couleur d'arrière-plan, donne 1 point à l'utilisateur
+ * et prépare les explications.
+ *
+ * @param {Int} answer Valeur de la réponse de l'utilisateur.
+ */
+function BonneReponse(answer) {
+  utilisateur.points += 1;
+  utilisateur.aValider = false;
+  utilisateur.aExpliquer = true;
+  const input = document.querySelector(`label[for="${answer}"]`);
+  input.style.backgroundColor = 'rgb(40, 167, 69)';
+  const submit = document.getElementById('submit');
+  submit.innerHTML = 'Suivant';
+}
+
+/**
+ * Gère le cas d'une mauvaise réponse.
+ * Change la couleur d'arrière-plan et prépare les explications.
+ *
+ * @param {Int} answer Valeur de la réponse de l'utilisateur.
+ */
+function MauvaiseReponse(answer) {
+  const input = document.querySelector(`label[for="${answer}"]`);
+  input.style.backgroundColor = '#dc3545';
+  utilisateur.aValider = false;
+  utilisateur.aExpliquer = true;
+  const submit = document.getElementById('submit');
+  submit.innerHTML = 'Suivant';
+}
+
+/**
+ * Affiche les explications lié à la question actuelle.
+ *
+ */
+function AfficheExplication() {
+  // Suppression des labels/inputs
+  const lastInputs = document.getElementsByClassName('radio');
+  while (lastInputs.length) {
+    lastInputs[0].remove();
+  }
+  // Creation d'un paragraphe contenant les détails
+  const text = document.createElement('p');
+  text.id = 'textExplication';
+  text.textContent = data[questionNumber - 1].explication;
+  // Positionner le texte dans le HTML
+  const wrapper = document.getElementById('choix');
+  const button = document.getElementById('submit');
+  wrapper.insertBefore(text, button);
+  utilisateur.aExpliquer = false;
+  questionNumber += 1;
 }
