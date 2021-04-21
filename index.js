@@ -35,18 +35,18 @@ const rawData = `
           "Au centre de la Terre",
           "Sur la Station Spatiale Internationale"
       ],
-      "explication": "David Saint-Jacques, un astronaute, astrophysicien, médecin et ingénieur québecois, à été sélectionné en 2009 (à 39 ans) pour une mission vers la Station Spatiale Internationale.",
+      "explication": "David Saint-Jacques, astronaute, astrophysicien, médecin et ingénieur québecois, a été sélectionné en 2009 (à 39 ans) pour une mission vers la Station Spatiale Internationale.",
       "reponse": 2,
       "image": "./assets/davidSaintJacques.jpg"
   },
   {
       "titre": "Qu'est ce que la planète neuf ?",
       "choix": [
-          "Une planète situé dans la ceinture de Kuiper",
+          "Une planète située dans la ceinture de Kuiper",
           "Une planète hypotétique du Système Solaire",
           "La 9ème planète à être apparue"
       ],
-      "explication": "La planète neuf est une planète hypotétique inventée pour expliquer certaines pertubations de l'orbite d'objets céleste plus situé au delà de Neptune.",
+      "explication": "La planète neuf est une planète hypotétique inventée pour expliquer certaines pertubations de l'orbite d'objets célestes situés au delà de Neptune.",
       "reponse": 1,
       "image": "./assets/planete9.jpg"
   },
@@ -57,7 +57,7 @@ const rawData = `
           "Plusieurs dizaines de minutes",
           "Environ 3 minutes"
       ],
-      "explication": "Les échanges de données entre la Terre et Mars se fait par les satellites orbitant autour de notre planète. Bien que l'information voyage à la vitesse de la lumière et en raison de la distance avec Mars, il faut 3 minutes et 22 secondes à la communication entre ces 2 planètes.",
+      "explication": "Les échanges de données entre la Terre et Mars se font par les satellites orbitant autour de notre planète. Bien que l'information voyage à la vitesse de la lumière et en raison de la distance avec Mars, il faut 3 minutes et 22 secondes à la communication entre ces 2 planètes.",
       "reponse": 2,
       "image": "./assets/perseverance.jpg"
   },
@@ -68,20 +68,20 @@ const rawData = `
           "Notre galaxie",
           "Une marque de crème glacée"
       ],
-      "explication": "La Voie Lactée est la galaxie dans lequel se trouve notre système solaire. La galaxie la plus proche est Andromède.",
+      "explication": "La Voie Lactée est la galaxie dans laquelle se trouve notre système solaire. La galaxie la plus proche est Andromède.",
       "reponse": 1,
       "image": "./assets/milkyWay.jpg"
   },
   {
       "titre": "Quelles sont les propriétés de Sagittarius B2 (un nuage de gaz) ?",
       "choix": [
-          "Goûte la framboise et sent la bière",
+          "Goûte la framboise et sent le rhum",
           "Extrêment dense et en forme du drapeau américain",
           "Multicolore et brillant"
       ],
-      "explication": "Des astronomes cherchant une trace de vie dans notre galaxie ont découvert, en analysant un nuage de gaz au milieu de celle-ci, du Formiate d'éthyle; une substance connu entre autre pour sa participation au goût de la framboise et à l'odeur du rhum.",
+      "explication": "Des astronomes cherchant une trace de vie dans notre galaxie ont découvert, en analysant un nuage de gaz au milieu de celle-ci, du Formiate d'Éthyle; une substance connue entre autre pour sa participation au goût de la framboise et à l'odeur du rhum.",
       "reponse": 0,
-      "image": "./assets/sagittariusB2.jpg"
+      "image": "./assets/sagittarius.png"
   },
   {
       "titre": "Pour être aussi dense qu'une étoile à neutron, l'humanité entière devrait être compressée dans le volume d'un cube de sucre !",
@@ -89,7 +89,7 @@ const rawData = `
           "Vrai",
           "Faux"
       ],
-      "explication": "Les étoiles à neutron sont des objets célestes formées suite à l'éffondrement d'une étoile massive. La masse est comprise entre 10 fois et 50 fois celle du Soleil et leur taille est comparable à la longueur de Manhattan (enviromn 20km).",
+      "explication": "Les étoiles à neutron sont des objets célestes formées suite à l'éffondrement d'une étoile massive. La masse est comprise entre 10 fois et 50 fois celle du Soleil et leur taille est comparable à la longueur de Manhattan (environ 20km).",
       "reponse": 0,
       "image": "./assets/neutronStar.jpg"
   },
@@ -100,7 +100,7 @@ const rawData = `
           "À déterminer la quantité de Kérosène nécessaire au décollage d'une fusée Space X",
           "À estimer le nombre potentiel de civilsations dans notre galaxie"
       ],
-      "explication": "L'équation de Drake, suggérée par l'astronome américain Frank Drake en 1961, tente de calculer le nombre de civilisations extraterrestres dans notre galaxie avec qui nous pourrions entrer en contact. Avec l'estimation actuelle des nombers, il y aurait 10 civilisations en mesure de communiquer avec nous.",
+      "explication": "L'équation de Drake, suggérée par l'astronome américain Frank Drake en 1961, tente de calculer le nombre de civilisations extraterrestres dans notre galaxie avec qui nous pourrions entrer en contact. Avec l'estimation actuelle des nombres, il y aurait 10 civilisations en mesure de communiquer avec nous.",
       "reponse": 2,
       "image": "./assets/drake.jpg"
   },
@@ -115,7 +115,7 @@ const rawData = `
       "image": "./assets/moon.jpg"
   },
   {
-      "titre": "Si une forme de vie située dans M58 (une galaxie spirale, situé à 70 millions d'années-lumière de nous) nous regardait en ce moment, que verait-elle ?",
+      "titre": "Si une forme de vie habitant sur M58 (une galaxie spirale, située à 70 millions d'années-lumière de nous) nous regardait en ce moment, que verait-elle ?",
       "choix": [
           "Des dinosaures",
           "Notre confinement",
@@ -152,26 +152,18 @@ function Validation(e) {
       const input = inputs[i];
       if (input.name === 'naissance') {
         const validation = CheckDate(input);
-        if (validation) {
-          errors.push(validation);
-        }
+        if (validation) errors.push(validation);
       } else {
         const validation = CheckText(input);
-        if (validation) {
-          errors.push(validation);
-        }
+        if (validation) errors.push(validation);
       }
     }
 
     // Retire les anciens messages d'erreurs.
     const lastList = document.getElementById('erreurs');
     const lastLabels = document.getElementsByClassName('erreurInfo');
-    if (lastList) {
-      lastList.remove();
-    }
-    while (lastLabels.length) {
-      lastLabels[0].remove();
-    }
+    if (lastList) lastList.remove();
+    while (lastLabels.length) lastLabels[0].remove();
 
     // Vrai, si le vecteur contient des messages d'erreurs.
     if (errors.length) {
@@ -211,24 +203,14 @@ function Validation(e) {
   } else if (utilisateur.aValider) {
     const answer = GetSelection(); // Récupérer le choix
     if (answer) { // S'il y a une sélection
-      const estValide = GetReponse(answer); // Valider le choix
-      if (estValide) {
-        BonneReponse(answer);
-      } else {
-        MauvaiseReponse(answer);
-      }
-    } else { // S'il n'y a pas de sélection
-      NoInput();
-    }
-  } else if (utilisateur.aExpliquer) { // On affiche les détails
-    AfficheExplication();
-  } else if (questionNumber <= 10) { // On passe à la prochaine question
-    AfficherQuestion();
-  } else if (!utilisateur.recommencer) { // On affiche le résultat
-    AfficherResultat();
-  } else { // Sinon on recommence le quiz
-    window.location.reload();
-  }
+      const estValide = ReponseValide(answer); // Valider le choix
+      if (estValide) BonneReponse(answer);
+      else MauvaiseReponse(answer);
+    } else NoInput();// S'il n'y a pas de sélection
+  } else if (utilisateur.aExpliquer) AfficheExplication(); // On affiche les détails
+  else if (questionNumber <= 10) AfficherQuestion(); // On passe à la prochaine question
+  else if (!utilisateur.recommencer) AfficherResultat(); // On affiche le résultat
+  else window.location.reload(); // Sinon on recommence le quiz
 
   e.preventDefault();
 }
@@ -244,8 +226,8 @@ function CheckText(input) {
     const label = GetLabel(input);
     return [`Le champ ${label.textContent} ne peut être vide.`, label];
   }
-  const pattern = /^[a-z ,.'-âûèéç]+$/i;
 
+  const pattern = /^[a-z ,.'-âûèéç]+$/i;
   if (!pattern.test(input.value)) {
     const label = GetLabel(input);
     return [`Le champ ${label.textContent} ne peut contenir des caractères autres que des lettres.`, label];
@@ -279,38 +261,30 @@ function CheckDate(input) {
   const ajdMois = ajd.getMonth() + 1;
   const ajdJour = ajd.getDate();
   if (annee < 1900) {
-    const label = GetLabel(input);
-    return ['L\'année de naissance est trop lointaine.', label];
+    return ['L\'année de naissance est trop lointaine.', GetLabel(input)];
   }
   if (annee > ajdAnnee) {
-    const label = GetLabel(input);
-    return ['L\'année de naissance ne peut être dans le futur.', label];
+    return ['L\'année de naissance ne peut être dans le futur.', GetLabel(input)];
   }
   if (annee === ajdAnnee && mois > ajdMois) {
-    const label = GetLabel(input);
-    return ['Le mois de naissance ne peut être dans le futur.', label];
+    return ['Le mois de naissance ne peut être dans le futur.', GetLabel(input)];
   }
   if (annee === ajdAnnee && mois === ajdMois && jour > ajdJour) {
-    const label = GetLabel(input);
-    return ['Le jour de naissance ne peut être dans le futur.', label];
+    return ['Le jour de naissance ne peut être dans le futur.', GetLabel(input)];
   }
   if (mois < 1 || mois > 12) {
-    const label = GetLabel(input);
-    return ['Le mois de naissance doit être comprit entre 1 et 12.', label];
+    return ['Le mois de naissance doit être comprit entre 1 et 12.', GetLabel(input)];
   }
   if (jour < 1 || jour > 31) {
-    const label = GetLabel(input);
-    return ['Le jour de naissance doit être comprit entre 1 et 31.', label];
+    return ['Le jour de naissance doit être comprit entre 1 et 31.', GetLabel(input)];
   }
   if (jour === 31 && [4, 6, 9, 11].includes(mois)) {
-    const label = GetLabel(input);
-    return ['Le mois de naissance ne contient pas 31 jours.', label];
+    return ['Le mois de naissance ne contient pas 31 jours.', GetLabel(input)];
   }
   if (mois === 2) { // Vérification d'une année bissextile
     const estBissextile = annee % 4 === 0 && (annee % 100 !== 0 || annee % 400 === 0);
     if (jour > 29 || (jour === 29 && !estBissextile)) {
-      const label = GetLabel(input);
-      return ['Le jour de naissance est invalide pour le mois de février.', label];
+      return ['Le jour de naissance est invalide pour le mois de février.', GetLabel(input)];
     }
   }
 
@@ -335,9 +309,7 @@ function GetLabel(input) {
  * @return {Boolean} Vrai si le caractère est valide, faux autrement.
  */
 function IsNumber(e) {
-  if (/Digit|Delete|Backspace|Arrow/.test(e.code)) {
-    return true;
-  }
+  if (/Digit|Delete|Backspace|Arrow/.test(e.code)) return true;
   return false;
 }
 
@@ -365,9 +337,7 @@ function DateNaissance(input, e) {
  */
 function SelectionnerChoix(e) {
   const lastError = document.getElementById('noInputErreur');
-  if (lastError) {
-    lastError.remove();
-  }
+  if (lastError) lastError.remove();
   const { target } = e;
   const radios = document.getElementsByClassName('radio');
   for (let i = 0; i < radios.length; i += 1) {
@@ -410,9 +380,7 @@ function AfficherQuestion() {
 
   // Suppression des explications
   const explication = document.getElementById('textExplication');
-  if (explication) {
-    explication.remove();
-  }
+  if (explication) explication.remove();
 
   // Définir leur valeur en fonction du numéro de la question
   const question = data[questionNumber - 1];
@@ -448,9 +416,7 @@ function GetSelection() {
   const choix = document.getElementsByName('choix');
   for (let i = 0; i < choix.length; i += 1) {
     const input = choix[i];
-    if (input.checked) {
-      return input.value;
-    }
+    if (input.checked) return input.value;
   }
   return undefined;
 }
@@ -463,9 +429,7 @@ function GetSelection() {
  */
 function NoInput() {
   const lastError = document.getElementById('noInputErreur');
-  if (lastError) {
-    return;
-  }
+  if (lastError) return;
   const errorLabel = document.createElement('label');
   errorLabel.classList.add('erreur');
   errorLabel.textContent = 'Vous devez sélectionner une réponse.';
@@ -486,10 +450,8 @@ function NoInput() {
  * @param {Int} answer Valeur de la réponse de l'utilisateur.
  * @return {Boolean} true si la réponse est bonne, faux autrement.
  */
-function GetReponse(answer) {
-  if (answer === data[questionNumber - 1].reponse.toString()) {
-    return true;
-  }
+function ReponseValide(answer) {
+  if (answer === data[questionNumber - 1].reponse.toString()) return true;
   return false;
 }
 
@@ -504,10 +466,24 @@ function BonneReponse(answer) {
   utilisateur.points += 1;
   utilisateur.aValider = false;
   utilisateur.aExpliquer = true;
+  // Changer la couleur de fond de la réponse de l'utilisateur
   const input = document.querySelector(`label[for="${answer}"]`);
   input.style.backgroundColor = 'rgb(40, 167, 69)';
   const submit = document.getElementById('submit');
   submit.innerHTML = 'Suivant';
+  const inputs = document.getElementsByName('choix');
+  for (let i = 0; i < inputs.length; i += 1) {
+    inputs[i].removeEventListener('change', SelectionnerChoix);
+  }
+  // Afficher un message "Bonne réponse !"
+  const goodAnswer = document.createElement('label');
+  goodAnswer.style.color = 'rgb(40, 167, 69)';
+  goodAnswer.textContent = 'Bonne réponse !';
+  goodAnswer.id = 'messageReponse';
+
+  const wrapper = document.getElementById('choix');
+  const fChoix = document.getElementsByClassName('radio')[0];
+  wrapper.insertBefore(goodAnswer, fChoix);
 }
 
 /**
@@ -517,12 +493,31 @@ function BonneReponse(answer) {
  * @param {Int} answer Valeur de la réponse de l'utilisateur.
  */
 function MauvaiseReponse(answer) {
-  const input = document.querySelector(`label[for="${answer}"]`);
-  input.style.backgroundColor = '#dc3545';
   utilisateur.aValider = false;
   utilisateur.aExpliquer = true;
   const submit = document.getElementById('submit');
   submit.innerHTML = 'Suivant';
+  // Changer la couleur de fond de la réponse de l'utilisateur
+  const label = document.querySelector(`label[for="${answer}"]`);
+  label.style.backgroundColor = '#dc3545';
+  // Afficher la bonne réponse
+  const inputs = document.getElementsByName('choix');
+  for (let i = 0; i < inputs.length; i += 1) {
+    const { value } = inputs[i];
+    if (ReponseValide(value)) {
+      const bonneReponse = document.querySelector(`label[for="${value}"]`);
+      bonneReponse.style.backgroundColor = 'rgb(40, 167, 69)';
+    }
+    inputs[i].removeEventListener('change', SelectionnerChoix);
+  }
+  // Afficher un message "Mauvaise réponse..."
+  const badAnswer = document.createElement('label');
+  badAnswer.style.color = '#dc3545';
+  badAnswer.textContent = 'Mauvaise réponse...';
+  badAnswer.id = 'messageReponse';
+  const wrapper = document.getElementById('choix');
+  const fChoix = document.getElementsByClassName('radio')[0];
+  wrapper.insertBefore(badAnswer, fChoix);
 }
 
 /**
@@ -532,13 +527,15 @@ function MauvaiseReponse(answer) {
 function AfficheExplication() {
   // Suppression des labels/inputs
   const lastInputs = document.getElementsByClassName('radio');
-  while (lastInputs.length) {
-    lastInputs[0].remove();
-  }
+  while (lastInputs.length) lastInputs[0].remove();
+  const messageReponse = document.getElementById('messageReponse');
+  if (messageReponse) messageReponse.remove();
+
   // Creation d'un paragraphe contenant les détails
   const text = document.createElement('p');
   text.id = 'textExplication';
   text.textContent = data[questionNumber - 1].explication;
+
   // Positionner le texte dans le HTML
   const wrapper = document.getElementById('choix');
   const button = document.getElementById('submit');
@@ -555,9 +552,7 @@ function AfficheExplication() {
 function AfficherResultat() {
   // Suppression des explications et autres élements
   const explication = document.getElementById('textExplication');
-  if (explication) {
-    explication.remove();
-  }
+  if (explication) explication.remove();
   const titre = document.getElementById('question');
   titre.remove();
   const number = document.getElementById('questionNumber');
@@ -603,8 +598,6 @@ function GetAge(date) {
   const naissance = new Date(annee, mois, jour);
   let age = today.getFullYear() - naissance.getFullYear();
   const m = today.getMonth() - naissance.getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < naissance.getDate())) {
-    age -= 1;
-  }
+  if (m < 0 || (m === 0 && today.getDate() < naissance.getDate())) age -= 1;
   return age;
 }

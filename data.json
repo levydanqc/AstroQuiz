@@ -17,18 +17,18 @@
             "Au centre de la Terre",
             "Sur la Station Spatiale Internationale"
         ],
-        "explication": "David Saint-Jacques, un astronaute, astrophysicien, médecin et ingénieur québecois, à été sélectionné en 2009 (à 39 ans) pour une mission vers la Station Spatiale Internationale.",
+        "explication": "David Saint-Jacques, astronaute, astrophysicien, médecin et ingénieur québecois, a été sélectionné en 2009 (à 39 ans) pour une mission vers la Station Spatiale Internationale.",
         "reponse": 2,
         "image": "./assets/davidSaintJacques.jpg"
     },
     {
         "titre": "Qu'est ce que la planète neuf ?",
         "choix": [
-            "Une planète situé dans la ceinture de Kuiper",
+            "Une planète située dans la ceinture de Kuiper",
             "Une planète hypotétique du Système Solaire",
             "La 9ème planète à être apparue"
         ],
-        "explication": "La planète neuf est une planète hypotétique inventée pour expliquer certaines pertubations de l'orbite d'objets céleste plus situé au delà de Neptune.",
+        "explication": "La planète neuf est une planète hypotétique inventée pour expliquer certaines pertubations de l'orbite d'objets célestes situés au delà de Neptune.",
         "reponse": 1,
         "image": "./assets/planete9.jpg"
     },
@@ -39,7 +39,7 @@
             "Plusieurs dizaines de minutes",
             "Environ 3 minutes"
         ],
-        "explication": "Les échanges de données entre la Terre et Mars se fait par les satellites orbitant autour de notre planète. Bien que l'information voyage à la vitesse de la lumière et en raison de la distance avec Mars, il faut 3 minutes et 22 secondes à la communication entre ces 2 planètes.",
+        "explication": "Les échanges de données entre la Terre et Mars se font par les satellites orbitant autour de notre planète. Bien que l'information voyage à la vitesse de la lumière et en raison de la distance avec Mars, il faut 3 minutes et 22 secondes à la communication entre ces 2 planètes.",
         "reponse": 2,
         "image": "./assets/perseverance.jpg"
     },
@@ -50,20 +50,20 @@
             "Notre galaxie",
             "Une marque de crème glacée"
         ],
-        "explication": "La Voie Lactée est la galaxie dans lequel se trouve notre système solaire. La galaxie la plus proche est Andromède.",
+        "explication": "La Voie Lactée est la galaxie dans laquelle se trouve notre système solaire. La galaxie la plus proche est Andromède.",
         "reponse": 1,
         "image": "./assets/milkyWay.jpg"
     },
     {
         "titre": "Quelles sont les propriétés de Sagittarius B2 (un nuage de gaz) ?",
         "choix": [
-            "Goûte la framboise et sent la bière",
+            "Goûte la framboise et sent le rhum",
             "Extrêment dense et en forme du drapeau américain",
             "Multicolore et brillant"
         ],
-        "explication": "Des astronomes cherchant une trace de vie dans notre galaxie ont découvert, en analysant un nuage de gaz au milieu de celle-ci, du Formiate d'éthyle; une substance connu entre autre pour sa participation au goût de la framboise et à l'odeur du rhum.",
+        "explication": "Des astronomes cherchant une trace de vie dans notre galaxie ont découvert, en analysant un nuage de gaz au milieu de celle-ci, du Formiate d'Éthyle; une substance connue entre autre pour sa participation au goût de la framboise et à l'odeur du rhum.",
         "reponse": 0,
-        "image": "./assets/sagittariusB2.jpg"
+        "image": "./assets/sagittariusB2.png"
     },
     {
         "titre": "Pour être aussi dense qu'une étoile à neutron, l'humanité entière devrait être compressée dans le volume d'un cube de sucre !",
@@ -71,7 +71,7 @@
             "Vrai",
             "Faux"
         ],
-        "explication": "Les étoiles à neutron sont des objets célestes formées suite à l'éffondrement d'une étoile massive. La masse est comprise entre 10 fois et 50 fois celle du Soleil et leur taille est comparable à la longueur de Manhattan (enviromn 20km).",
+        "explication": "Les étoiles à neutron sont des objets célestes formées suite à l'éffondrement d'une étoile massive. La masse est comprise entre 10 fois et 50 fois celle du Soleil et leur taille est comparable à la longueur de Manhattan (environ 20km).",
         "reponse": 0,
         "image": "./assets/neutronStar.jpg"
     },
@@ -82,7 +82,7 @@
             "À déterminer la quantité de Kérosène nécessaire au décollage d'une fusée Space X",
             "À estimer le nombre potentiel de civilsations dans notre galaxie"
         ],
-        "explication": "L'équation de Drake, suggérée par l'astronome américain Frank Drake en 1961, tente de calculer le nombre de civilisations extraterrestres dans notre galaxie avec qui nous pourrions entrer en contact. Avec l'estimation actuelle des nombers, il y aurait 10 civilisations en mesure de communiquer avec nous.",
+        "explication": "L'équation de Drake, suggérée par l'astronome américain Frank Drake en 1961, tente de calculer le nombre de civilisations extraterrestres dans notre galaxie avec qui nous pourrions entrer en contact. Avec l'estimation actuelle des nombres, il y aurait 10 civilisations en mesure de communiquer avec nous.",
         "reponse": 2,
         "image": "./assets/drake.jpg"
     },
@@ -97,7 +97,7 @@
         "image": "./assets/moon.jpg"
     },
     {
-        "titre": "Si une forme de vie située dans M58 (une galaxie spirale, situé à 70 millions d'années-lumière de nous) nous regardait en ce moment, que verait-elle ?",
+        "titre": "Si une forme de vie habitant sur M58 (une galaxie spirale, située à 70 millions d'années-lumière de nous) nous regardait en ce moment, que verait-elle ?",
         "choix": [
             "Des dinosaures",
             "Notre confinement",
